@@ -1,0 +1,75 @@
+/* Add at the end of your <style> section */
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+        font-size: 1em;
+    }
+    .spotify-sidebar {
+        position: static;
+        width: 100vw;
+        height: auto;
+        padding: 12px 8px;
+        border-radius: 0;
+        box-shadow: none;
+        margin-bottom: 12px;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 0 4px;
+        width: 100vw;
+    }
+    .container {
+        padding: 12px 4px;
+        margin-top: 8px;
+        max-width: 98vw;
+        border-radius: 12px;
+    }
+    h1 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    label, select, button {
+        font-size: 1em;
+    }
+    #songImage {
+        width: 120px;
+        height: 120px;
+        padding: 4px;
+        margin-top: 8px;
+    }
+    .main-btn-row-container {
+        flex-direction: row;
+        gap: 8px;
+        top: 8px;
+        right: 8px;
+        left: auto;
+        transform: none;
+        position: static;
+        margin-bottom: 8px;
+    }
+    .player-controls {
+        flex-direction: row;
+        gap: 8px;
+        margin-top: 8px;
+    }
+    .player-btn, .spotify-play-btn {
+        font-size: 1em;
+        padding: 6px 12px;
+        width: 36px;
+        height: 36px;
+    }
+    #audioPlayer {
+        width: 98vw;
+        margin-top: 8px;
+    }
+    .song-row {
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px 6px;
+        font-size: 0.95em;
+    }
+    .btn-label {
+        font-size: 0.9em;
+        margin-top: 6px;
+    }
+}
