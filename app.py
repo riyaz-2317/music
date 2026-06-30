@@ -2,14 +2,14 @@ import pandas as pd
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
+import re
+
+from cloudinary_mapping import SONGS, IMAGES
 
 app = Flask(__name__)
 CORS(app)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SONGS_FOLDER = os.path.join(BASE_DIR, 'songs')
-IMAGE_FOLDER = os.path.join(BASE_DIR, 'images')
-CREATE_PLAYLIST = os.path.join(BASE_DIR, 'Create playlist')
 
 EMOJI_TO_SENTIMENT = {
     "😊": "Happy",
@@ -22,19 +22,27 @@ EMOJI_TO_SENTIMENT = {
     "🔥": "Motivated"
 }
 
-df = pd.read_csv(r"C:\Users\shaik\OneDrive\Desktop\EMOJI\music_sentiment_dataset.csv")
+# Use a relative path so this works both locally and when deployed (e.g. Render)
+df = pd.read_csv(os.path.join(BASE_DIR, "music_sentiment_dataset.csv"))
 
-def get_song_filename(song_name):
-    # Normalize song name for matching
-    base = song_name.strip().replace(' ', '').lower()
-    for ext in ['.mp3', '.wav', '.ogg']:
-        # Check for exact match (case-insensitive, ignoring spaces)
-        for file in os.listdir(SONGS_FOLDER):
-            if file.lower().endswith(ext):
-                file_base = os.path.splitext(file)[0].replace(' ', '').lower()
-                if file_base == base:
-                    return file
-    return None
+
+def normalize(name):
+    """Lowercase, strip spaces/underscores for fuzzy matching against Cloudinary keys."""
+    return re.sub(r'[\s_]+', '', str(name).strip().lower())
+
+
+# Build normalized lookup dicts once at startup
+SONGS_NORMALIZED = {normalize(k): v for k, v in SONGS.items()}
+IMAGES_NORMALIZED = {normalize(k): v for k, v in IMAGES.items()}
+
+
+def get_song_url(song_name):
+    return SONGS_NORMALIZED.get(normalize(song_name))
+
+
+def get_image_url(song_name):
+    return IMAGES_NORMALIZED.get(normalize(song_name))
+
 
 def recommend_songs(sentiment):
     songs = df[df['Sentiment_Label'].str.lower() == sentiment.lower()]
@@ -43,28 +51,22 @@ def recommend_songs(sentiment):
     songs = songs.drop_duplicates(subset=['Song_Name', 'Artist'])
     result = []
     for _, row in songs.iterrows():
-        # Use File_Name column if present, else fallback to filename matching
-        filename = None
-        if 'File_Name' in df.columns and pd.notna(row.get('File_Name', None)):
-            filename = row['File_Name']
-        else:
-            filename = get_song_filename(row['Song_Name'])
-        file_url = f"/songs/{filename}" if filename else None
+        song_name = row['Song_Name']
+        file_url = get_song_url(song_name)
+        image_url = get_image_url(song_name)
         mood = row.get('Mood')
         if not mood or pd.isna(mood):
             mood = sentiment
         result.append({
-            'Song_Name': row['Song_Name'],
+            'Song_Name': song_name,
             'Artist': row['Artist'],
             'Genre': row['Genre'],
             'Mood': mood,
-            'file_url': file_url
+            'file_url': file_url,
+            'image_url': image_url
         })
     return result
 
-@app.route('/songs/<path:filename>')
-def serve_song(filename):
-    return send_from_directory(SONGS_FOLDER, filename)
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
@@ -77,14 +79,10 @@ def recommend():
     return jsonify({'sentiment': sentiment, 'songs': songs})
 
 
-# Route to serve images
-@app.route('/images/<path:filename>')
-def serve_image(filename):
-    return send_from_directory(IMAGE_FOLDER, filename)
-
 @app.route('/')
 def index():
     return send_from_directory('.', 'index.html')
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

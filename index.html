@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Emoji-based Song Recommendation</title>
     <style>
-        /* Spotify Theme Colors */
         body {
             background: linear-gradient(135deg, #191414 0%, #1db954 100%);
             font-family: 'Circular', 'Segoe UI', Arial, sans-serif;
@@ -30,7 +29,6 @@
         h1 {
             color: #1db954;
             margin-bottom: 18px;
-            font-family: 'Circular', 'Segoe UI', Arial, sans-serif;
             font-weight: 700;
             letter-spacing: 0.02em;
             font-size: 2em;
@@ -241,7 +239,6 @@
             background: #1db954;
             color: #191414;
         }
-        /* Custom scrollbar for Spotify look */
         ::-webkit-scrollbar {
             width: 8px;
             background: #191414;
@@ -250,81 +247,174 @@
             background: #1db954;
             border-radius: 8px;
         }
-        /* Add to your <style> section for Spotify play button style */
-.spotify-play-btn {
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin-left: 10px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-}
-.spotify-play-btn:hover {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 8px #1db954);
-}
-/* Add to your <style> section */
-.spotify-play-btn {
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin-left: 10px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-}
-.spotify-play-btn:hover {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 8px #1db954);
-}
-@media (max-width: 600px) {
-    .container {
-        padding: 18px 8px 18px 8px;
-        margin-top: 24px;
-        max-width: 98vw;
-        border-radius: 12px;
-    }
-    h1 {
-        font-size: 1.2em;
-    }
-    #songImage {
-        width: 120px;
-        height: 120px;
-        padding: 4px;
-        margin-top: 8px;
-    }
-    .main-btn-row-container {
-        flex-direction: column;
-        gap: 12px;
-        top: 8px;
-        right: 8px;
-        left: auto;
-        transform: none;
-    }
-    .player-controls {
-        flex-direction: column;
-        gap: 8px;
-    }
-    .player-btn, .spotify-play-btn {
-        font-size: 1em;
-        padding: 6px 12px;
-        width: 36px;
-        height: 36px;
-    }
-    #audioPlayer {
-        width: 98vw;
-        margin-top: 8px;
-    }
-}
+        .spotify-play-btn {
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-left: 10px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+        .spotify-play-btn:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 8px #1db954);
+        }
+        @media (max-width: 600px) {
+            body {
+                align-items: stretch;
+            }
+            .container {
+                padding: 70px 14px 24px 14px;
+                margin: 0;
+                max-width: 100vw;
+                width: 100%;
+                border-radius: 0;
+                box-sizing: border-box;
+                min-height: 100vh;
+            }
+            h1 {
+                font-size: 1.3em;
+                margin-bottom: 12px;
+            }
+            label {
+                font-size: 1em;
+            }
+            select {
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 1em;
+                padding: 10px 12px;
+            }
+            button {
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 1em;
+                padding: 12px 14px;
+            }
+            .rvit-logo {
+                max-width: 70px;
+                margin-bottom: 12px;
+            }
+            #songImage {
+                width: 150px;
+                height: 150px;
+                padding: 6px;
+                margin-top: 10px;
+            }
+            .main-btn-row-container {
+                top: 8px;
+                right: 8px;
+                left: auto;
+                transform: none;
+                gap: 0;
+            }
+            .main-btn-row-container > div {
+                flex-direction: row;
+                gap: 8px;
+            }
+            .main-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 1.2em;
+            }
+            .main-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+            .btn-label {
+                display: none;
+            }
+            #darkModeToggle {
+                position: fixed;
+                top: 8px;
+                left: 8px;
+                font-size: 0.85em;
+                padding: 6px 12px;
+                z-index: 20;
+            }
+            #prevSongDropdown {
+                width: 90vw !important;
+                max-width: 280px;
+                top: 56px !important;
+            }
+            .song-row {
+                flex-wrap: wrap;
+                padding: 14px 12px;
+                gap: 8px;
+            }
+            .song-info {
+                font-size: 0.95em;
+                min-width: 0;
+            }
+            .player-controls {
+                flex-direction: row;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            .player-btn {
+                flex: 1;
+                font-size: 0.95em;
+                padding: 8px 10px;
+                width: auto;
+                height: auto;
+            }
+            .spotify-play-btn {
+                width: 36px;
+                height: 36px;
+                flex-shrink: 0;
+            }
+            .spotify-play-btn svg {
+                width: 32px;
+                height: 32px;
+            }
+            #audioPlayer {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .container {
+                padding-top: 64px;
+            }
+            h1 {
+                font-size: 1.1em;
+            }
+            .main-btn {
+                width: 38px;
+                height: 38px;
+            }
+            #darkModeToggle {
+                font-size: 0.75em;
+                padding: 5px 10px;
+            }
+        }
+        .history-dropdown {
+            top: 70px;
+            right: 8px;
+            width: 220px;
+            z-index: 100;
+            display: none;
+            font-size: 1em;
+            background: #282828;
+            color: #1db954;
+            border: 2px solid #1db954;
+            border-radius: 12px;
+            padding: 6px 10px;
+        }
+        @media (max-width: 600px) {
+            .history-dropdown {
+                top: 56px;
+                right: 8px;
+                width: 90vw;
+                max-width: 280px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -351,30 +441,24 @@
             </div>
         </div>
     </div>
-    <!-- Replace the dark mode toggle button with this version -->
-<button id="darkModeToggle" onclick="toggleDarkMode()" style="position:fixed;top:32px;left:36px;background:#1db954;color:#191414;border:none;border-radius:18px;padding:8px 18px;font-size:1em;cursor:pointer;z-index:10;transition:background 0.2s, color 0.2s;">🌙 Dark Mode</button>
-    <!-- ...existing code...-->
+    <button id="darkModeToggle" onclick="toggleDarkMode()" style="position:fixed;top:32px;left:36px;background:#1db954;color:#191414;border:none;border-radius:18px;padding:8px 18px;font-size:1em;cursor:pointer;z-index:10;transition:background 0.2s, color 0.2s;">🌙 Dark Mode</button>
     <div class="container">
         <img src="rvit.jpg" alt="RVIT Logo" class="rvit-logo">
         <h1>🎵 Emoji Song Recommender</h1>
         <label for="emojiSelect">Choose your mood:</label>
         <select id="emojiSelect">
             <option value="">-- Select an emoji --</option>
-            <!-- Happy -->
             <option value="😊">😊</option>
             <option value="😊">😃</option>
             <option value="😊">😄</option>
             <option value="😊">😆</option>
             <option value="😊">🤣</option>
-            <!-- Sad -->
             <option value="😢">😞</option>
             <option value="😢">😿</option>
-            <!-- Relaxed -->
             <option value="😌">😌</option>
             <option value="😌">😴</option>
             <option value="😌">😇</option>
             <option value="😌">🧘</option>
-            <!-- Motivated / Energetic -->
             <option value="💪">🤩</option>
             <option value="💪">😤</option>
             <option value="💪">🔥</option>
@@ -394,7 +478,11 @@
         <div id="result"></div>
     </div>
     <script>
-        // Track all previously played songs
+        // Backend API base URL.
+        // Locally (testing on your PC): "http://127.0.0.1:5000"
+        // Deployed (Render backend): "https://ryta-hub-backend.onrender.com" or your equivalent
+        const API_BASE = "https://ryta-hub-backend.onrender.com";
+
         let songHistory = [];
         let historyDropdownVisible = false;
 
@@ -415,23 +503,13 @@
                 historyDropdown = document.createElement('select');
                 historyDropdown.id = 'prevSongDropdown';
                 historyDropdown.style.position = 'absolute';
-                historyDropdown.style.top = '70px';
-                historyDropdown.style.left = '50%';
-                historyDropdown.style.transform = 'translateX(-50%)';
-                historyDropdown.style.width = '220px';
-                historyDropdown.style.zIndex = '100';
-                historyDropdown.style.display = 'none';
-                historyDropdown.style.fontSize = '1em';
-                historyDropdown.style.background = '#282828';
-                historyDropdown.style.color = '#1db954';
-                historyDropdown.style.border = '2px solid #1db954';
-                historyDropdown.style.borderRadius = '12px';
+                historyDropdown.className = 'history-dropdown';
                 historyDropdown.onchange = function() {
                     const idx = historyDropdown.selectedIndex;
                     if (idx >= 0 && idx < songHistory.length) {
                         const song = songHistory[idx];
                         let safeRowId = song.rowId || 'row0';
-                        playSong(song.url, 'playBtnPrev', song.mood, safeRowId);
+                        playSong(song.url, song.imageUrl, 'playBtnPrev', song.mood, safeRowId);
                     }
                 };
                 btn.parentNode.insertBefore(historyDropdown, btn.nextSibling);
@@ -456,6 +534,7 @@
             historyDropdownVisible = !historyDropdownVisible;
             updatePrevSongBtn();
         }
+
         function goHome() {
             const playerInner = document.getElementById('playerInner');
             const resultDiv = document.getElementById('result');
@@ -475,6 +554,7 @@
                 audio.style.display = 'none';
             }
         }
+
         function playNextSong() {
             let historyDropdown = document.getElementById('prevSongDropdown');
             if (historyDropdown && historyDropdown.style.display === 'block') {
@@ -487,9 +567,10 @@
             if (window.currentSongIdx !== null && window.currentSongList && window.currentSongIdx + 1 < window.currentSongList.length) {
                 let nextSong = window.currentSongList[window.currentSongIdx + 1];
                 window.currentSongIdx = window.currentSongIdx + 1;
-                playSong(nextSong.file_url, 'playBtn' + window.currentSongIdx, nextSong.Mood.toLowerCase(), 'row' + window.currentSongIdx);
+                playSong(nextSong.file_url, nextSong.image_url, 'playBtn' + window.currentSongIdx, nextSong.Mood.toLowerCase(), 'row' + window.currentSongIdx);
             }
         }
+
         function playPrevSong() {
             let historyDropdown = document.getElementById('prevSongDropdown');
             if (historyDropdown && historyDropdown.style.display === 'block') {
@@ -501,11 +582,13 @@
             }
             if (window.currentSongIdx !== null && window.currentSongIdx > 0) {
                 let prevSong = window.currentSongList[window.currentSongIdx - 1];
-                playSong(prevSong.file_url, 'playBtn' + (window.currentSongIdx - 1), prevSong.Mood.toLowerCase(), 'row' + (window.currentSongIdx - 1));
+                playSong(prevSong.file_url, prevSong.image_url, 'playBtn' + (window.currentSongIdx - 1), prevSong.Mood.toLowerCase(), 'row' + (window.currentSongIdx - 1));
             }
         }
+
         window.currentSongIdx = null;
         window.currentSongList = [];
+
         function getRecommendation() {
             const emoji = document.getElementById('emojiSelect').value;
             const resultDiv = document.getElementById('result');
@@ -521,7 +604,7 @@
                 resultDiv.innerHTML = "<span class='error'>Please select an emoji.</span>";
                 return;
             }
-            fetch('http://192.168.1.6:5000/recommend', {
+            fetch(API_BASE + '/recommend', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ emoji })
@@ -539,7 +622,9 @@
                         html += `<div class='song-row' id='row${idx}'>`;
                         html += `<div class='song-info'><span><strong>${song.Song_Name}</strong> by ${song.Artist} <em>[${song.Genre}, ${song.Mood}]</em></span></div>`;
                         if (song.file_url) {
-                            html += `<button type='button' class='spotify-play-btn' id='playBtn${idx}' onclick='playSong("${song.file_url.replace(/'/g, "\\'")}", "playBtn${idx}", "${song.Mood.toLowerCase()}", "row${idx}")'>
+                            const fileUrl = song.file_url.replace(/'/g, "\\'");
+                            const imageUrl = (song.image_url || '').replace(/'/g, "\\'");
+                            html += `<button type='button' class='spotify-play-btn' id='playBtn${idx}' onclick='playSong("${fileUrl}", "${imageUrl}", "playBtn${idx}", "${song.Mood.toLowerCase()}", "row${idx}")'>
         <svg height="38" width="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="19" cy="19" r="19" fill="#191414"/>
             <polygon points="15,12 28,19 15,26" fill="#1db954"/>
@@ -556,7 +641,8 @@
                 resultDiv.innerHTML = "<span class='error'>Server error. Is the backend running?</span>";
             });
         }
-        function playSong(url, btnId, mood, rowId) {
+
+        function playSong(url, imageUrl, btnId, mood, rowId) {
             let songName = '';
             const historyRow = document.getElementById(rowId);
             if (historyRow) {
@@ -566,23 +652,26 @@
             if (!songHistory.some(s => s.url === url)) {
                 const now = new Date();
                 const dateStr = now.toLocaleString();
-                songHistory.push({ url, name: songName, mood, rowId, date: dateStr });
+                songHistory.push({ url, imageUrl, name: songName, mood, rowId, date: dateStr });
                 localStorage.setItem('songHistory', JSON.stringify(songHistory));
                 updatePrevSongBtn();
             }
             document.getElementById('playerInner').classList.remove('player-inner-hidden');
             const audio = document.getElementById('audioPlayer');
             const songImage = document.getElementById('songImage');
-            // Change both URLs to use your computer's IP
-            audio.src = 'http://192.168.1.6:5000' + url;
+
+            // file_url / image_url are now full Cloudinary URLs — use them directly
+            audio.src = url;
             audio.style.display = 'block';
             audio.play();
-            // For image
-            let songFile = url.split('/').pop();
-            let imageName = songFile.replace('.mp3', '.jpg');
-            let imagePath = 'http://192.168.1.6:5000/images/' + imageName;
-            songImage.src = imagePath;
-            songImage.style.display = 'block';
+
+            if (imageUrl) {
+                songImage.src = imageUrl;
+                songImage.style.display = 'block';
+            } else {
+                songImage.style.display = 'none';
+            }
+
             document.querySelectorAll('.song-row').forEach(row => {
                 row.classList.remove('playing');
                 const info = row.querySelector('.song-info');
@@ -601,6 +690,7 @@
                 if (info) info.classList.add('playing');
             }
         }
+
         function pauseSong(rowId) {
             document.getElementById('playerInner').classList.add('player-inner-hidden');
             const audio = document.getElementById('audioPlayer');
@@ -610,7 +700,7 @@
             songImage.style.display = 'none';
             audio.style.display = 'none';
         }
-        // Dark mode toggle function
+
         function toggleDarkMode() {
             document.body.classList.toggle('dark');
             const btn = document.getElementById('darkModeToggle');
