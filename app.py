@@ -83,6 +83,10 @@ def recommend():
 def index():
     return send_from_directory('.', 'index.html')
 
+@app.route('/rvit.jpg')
+def serve_logo():
+    return send_from_directory('.', 'rvit.jpg')
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

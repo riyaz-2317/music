@@ -76,8 +76,8 @@
             gap: 32px;
             position: fixed;
             top: 32px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 36px;
+            left: auto;
             z-index: 12;
         }
         .main-btn {
@@ -267,15 +267,21 @@
         @media (max-width: 600px) {
             body {
                 align-items: stretch;
+                padding: 0;
+                overflow-x: hidden;
             }
             .container {
-                padding: 70px 14px 24px 14px;
+                padding: 64px 14px 24px 14px;
                 margin: 0;
                 max-width: 100vw;
                 width: 100%;
                 border-radius: 0;
                 box-sizing: border-box;
                 min-height: 100vh;
+                /* Fix zig-zag/jagged frame on mobile */
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                box-shadow: none;
             }
             h1 {
                 font-size: 1.3em;
@@ -307,15 +313,16 @@
                 margin-top: 10px;
             }
             .main-btn-row-container {
-                top: 8px;
-                right: 8px;
+                top: 10px;
+                right: 10px;
                 left: auto;
                 transform: none;
                 gap: 0;
+                z-index: 20;
             }
             .main-btn-row-container > div {
                 flex-direction: row;
-                gap: 8px;
+                gap: 6px;
             }
             .main-btn {
                 width: 42px;
@@ -394,6 +401,9 @@
                 padding: 5px 10px;
             }
         }
+        .player-inner-hidden {
+            display: none !important;
+        }
         .history-dropdown {
             top: 70px;
             right: 8px;
@@ -414,11 +424,30 @@
                 width: 90vw;
                 max-width: 280px;
             }
+            /* Fix dark mode button overlapping nav buttons on mobile */
+            #darkModeToggle {
+                position: fixed !important;
+                top: 10px !important;
+                left: 10px !important;
+                font-size: 0.78em !important;
+                padding: 5px 10px !important;
+                max-width: 110px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                z-index: 21 !important;
+            }
+            .main-btn-row-container {
+                top: 10px !important;
+                right: 10px !important;
+                left: auto !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="main-btn-row-container" style="right:36px; left:auto; top:32px; position:fixed; gap:32px;">
+    <div class="main-btn-row-container">
         <div style="display: flex; flex-direction: row; align-items: flex-end;">
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <button id="homeBtn" class="main-btn" title="Home" onclick="goHome()">
@@ -443,7 +472,7 @@
     </div>
     <button id="darkModeToggle" onclick="toggleDarkMode()" style="position:fixed;top:32px;left:36px;background:#1db954;color:#191414;border:none;border-radius:18px;padding:8px 18px;font-size:1em;cursor:pointer;z-index:10;transition:background 0.2s, color 0.2s;">🌙 Dark Mode</button>
     <div class="container">
-        <img src="rvit.jpg" alt="RVIT Logo" class="rvit-logo">
+        <img src="/rvit.jpg" alt="RVIT Logo" class="rvit-logo" onerror="this.style.display='none'">
         <h1>🎵 Emoji Song Recommender</h1>
         <label for="emojiSelect">Choose your mood:</label>
         <select id="emojiSelect">
@@ -481,7 +510,7 @@
         // Backend API base URL.
         // Locally (testing on your PC): "http://127.0.0.1:5000"
         // Deployed (Render backend): "https://ryta-hub-backend.onrender.com" or your equivalent
-        const API_BASE = "https://emoji-music-backend.onrender.com";
+        const API_BASE = "https://ryta-hub-backend.onrender.com";
 
         let songHistory = [];
         let historyDropdownVisible = false;
@@ -643,6 +672,10 @@
         }
 
         function playSong(url, imageUrl, btnId, mood, rowId) {
+            // Fix: track current index so Next/Prev buttons work correctly
+            const foundIdx = window.currentSongList.findIndex(s => s.file_url === url);
+            if (foundIdx !== -1) window.currentSongIdx = foundIdx;
+
             let songName = '';
             const historyRow = document.getElementById(rowId);
             if (historyRow) {
