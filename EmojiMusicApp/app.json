@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "EmojiMusicApp",
+    "slug": "emoji-music-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#191414"
+      },
+      "package": "com.riyaz_2317.emojimusicapp"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b569c947-27b0-42ad-86c4-f45312394c90"
+      }
+    }
+  }
+}
